@@ -1,0 +1,375 @@
+body {
+	background-color: #fff7e6;
+	font-family: Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	margin: 0;
+}
+
+#clockCanvas {
+	display: block;
+	margin: 0 auto 1rem auto;
+	border-radius: 50%;
+	box-shadow: 
+		inset 0 0 20px rgba(0, 0, 0, 0.2),
+		0 5px 15px rgba(0, 0, 0, 0.3);
+	background: linear-gradient(145deg, #fff7e6, #ffeb99);
+}
+
+.stopwatch-container {
+	background: linear-gradient(145deg, #ffeb99, #ffd633);
+	padding: 2rem;
+	border-radius: 15px;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	text-align: center;
+	width: fit-content;
+}
+
+.time-display {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	margin-bottom: 1.5rem;
+	background: linear-gradient(145deg, #ffffff, #f0f0f0);
+	padding: 1rem;
+	border-radius: 10px;
+	box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.display {
+	font-family: 'Courier New', monospace;
+	font-size: 3.5rem;
+	font-weight: bold;
+	color: #333;
+}
+
+.milliseconds {
+	font-family: 'Courier New', monospace;
+	font-size: 2rem;
+	font-weight: bold;
+	color: #ff4d4d;
+	min-width: 3ch;
+}
+
+.controls {
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+	margin-bottom: 1.5rem;
+}
+
+button {
+	padding: 0.8rem 1.5rem;
+	font-size: 1.1rem;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	color: #333;
+	transition: all 0.3s;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background: linear-gradient(145deg, #ffd633, #ffcc00);
+}
+
+.btn-secondary {
+    background: linear-gradient(145deg, #f0f0f0, #e6e6e6);
+}
+
+button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+	transform: translateY(1px);
+}
+
+.lap-times {
+	background: linear-gradient(145deg, #ffffff, #f0f0f0);
+	padding: 1rem;
+	border-radius: 10px;
+	max-height: 200px;
+	overflow-y: auto;
+	box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#lapList {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	text-align: left;
+}
+
+#lapList li {
+	padding: 0.8rem;
+	border-bottom: 1px solid #ffeb99;
+	display: flex;
+	justify-content: space-between;
+	font-family: 'Courier New', monospace;
+}
+
+#lapList li:hover {
+	background: rgba(255, 214, 51, 0.1);
+}
+
+.container {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.history-container {
+    flex: 1;
+    background: linear-gradient(145deg, #ffeb99, #ffd633);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.history-container h2 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.sessions-list {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    max-height: 600px;
+    overflow-y: auto;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.session-title {
+	font-weight: bold;
+	color: #333;
+	font-size: 1.1rem;
+	margin-bottom: 0.3rem;
+}
+
+.session-time {
+	font-family: 'Courier New', monospace;
+	font-size: 1.2rem;
+	color: #333;
+	margin-bottom: 0.2rem;
+}
+
+.session-date {
+	color: #666;
+	font-size: 0.9rem;
+}
+
+.ms {
+	color: #ff4d4d;
+	font-size: 0.9em;
+}
+
+.session-item {
+	background: linear-gradient(145deg, #ffffff, #f8f8f8);
+	margin-bottom: 1rem;
+	border-radius: 8px;
+	padding: 1rem;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.session-item:hover {
+	background: linear-gradient(145deg, #fff7e6, #fff0cc);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.session-item.active {
+	background: linear-gradient(145deg, #fff7e6, #ffeb99);
+	border-left: 4px solid #ffd633;
+}
+
+.session-laps {
+	margin-left: 1rem;
+	padding-left: 1rem;
+	border-left: 2px solid #ffeb99;
+	display: none;
+}
+
+.session-item.active .session-laps {
+	display: block;
+}
+
+.session-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.5rem 0;
+}
+
+.session-info {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+}
+
+.lap-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.8rem;
+	margin: 0.5rem 0;
+	background: rgba(255, 255, 255, 0.7);
+	border-radius: 6px;
+	font-family: 'Courier New', monospace;
+}
+
+.lap-number {
+	color: #666;
+}
+
+.lap-time {
+	font-weight: bold;
+}
+
+.no-laps {
+	text-align: center;
+	color: #666;
+	padding: 1rem;
+	font-style: italic;
+	background: rgba(255, 255, 255, 0.7);
+	border-radius: 6px;
+	margin: 0.5rem 0;
+}
+
+.sessions-list::-webkit-scrollbar {
+	width: 8px;
+}
+
+.sessions-list::-webkit-scrollbar-track {
+	background: #fff;
+	border-radius: 4px;
+}
+
+.sessions-list::-webkit-scrollbar-thumb {
+	background: #ffd633;
+	border-radius: 4px;
+}
+
+.session-laps {
+	margin-top: 0.5rem;
+	padding-top: 0.5rem;
+	border-top: 1px solid #ffeb99;
+}
+
+.loading-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none; /* Hidden by default */
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.loading-indicator.active {
+    display: block;
+}
+
+.loading-indicator svg {
+    animation: rotate 2s linear infinite;
+    width: 50px;
+    height: 50px;
+    fill: #ffcc00;
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Add responsive styles */
+@media screen and (max-width: 1024px) {
+	.container {
+		max-width: 100%;
+		padding: 1rem;
+		gap: 1rem;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.container {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.stopwatch-container,
+	.history-container {
+		width: 100%;
+		max-width: 500px;
+	}
+
+	.display {
+		font-size: 2.5rem;
+	}
+
+	.milliseconds {
+		font-size: 1.5rem;
+	}
+
+	.controls {
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	button {
+		padding: 0.6rem 1.2rem;
+		font-size: 1rem;
+	}
+
+	#clockCanvas {
+		width: 150px;
+		height: 150px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.stopwatch-container,
+	.history-container {
+		padding: 1rem;
+	}
+
+	.display {
+		font-size: 2rem;
+	}
+
+	.milliseconds {
+		font-size: 1.2rem;
+	}
+
+	#clockCanvas {
+		width: 120px;
+		height: 120px;
+	}
+
+	.session-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.time, .date {
+		font-size: 0.9rem;
+	}
+
+	.lap-item {
+		font-size: 0.9rem;
+		padding: 0.4rem 0.8rem;
+	}
+}

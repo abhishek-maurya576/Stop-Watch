@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Yellow Stopwatch</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<div class="container">
+		<div class="stopwatch-container">
+			<canvas id="clockCanvas" width="200" height="200"></canvas>
+			<div class="time-display">
+				<div class="display">00:00:00</div>
+				<div class="milliseconds">000</div>
+			</div>
+			<div class="controls">
+				<button id="startBtn" class="btn-primary">Start</button>
+				<button id="resetBtn" class="btn-secondary">Reset</button>
+				<button id="lapBtn" class="btn-secondary">Lap</button>
+			</div>
+			<div class="lap-times">
+				<h3>Split Times</h3>
+				<ul id="lapList"></ul>
+			</div>
+		</div>
+		
+		<div class="history-container">
+			<h2>Session History</h2>
+			<div class="loading-indicator">
+				<svg viewBox="0 0 50 50">
+					<circle cx="25" cy="25" r="20" fill="none" stroke="#ffcc00" stroke-width="5" stroke-linecap="round" />
+				</svg>
+			</div>
+			<div class="sessions-list" id="sessionsList"></div>
+		</div>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>
